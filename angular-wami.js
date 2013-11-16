@@ -124,7 +124,7 @@ angular.module('wami.recorder', [])
                     var self = this;
                     function delegate(name) {
                         self[name] = function() {
-                            return self.recorder[name].apply(recorder, arguments);
+                            return self.recorder[name].apply(self.recorder, arguments);
                         }
                     }
 
@@ -216,6 +216,11 @@ angular.module('wami.recorder', [])
 
                         recorder = WamiRecorder.getRecorder(options);
                         recorder.embed($attrs.id);
+
+                        $scope.startRecording = function () {
+                            recorder.startRecording();
+                        }
+
                         // angular.extend(wamiSettings, options);
 
                         // Wami.setup({
